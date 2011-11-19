@@ -30,5 +30,5 @@ app.get('/', function (req, res) {
   template(res, 200, 'layout', {});  
 });
 
-app.listen(8000);
+app.listen(80);
 
