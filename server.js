@@ -19,7 +19,6 @@ var template = function (res, statusCode, template, view) {
 
     var readableStream = mu.render(template + '.html', view);
 
-
     util.pump(readableStream, res, function (err) {
       // winston.log('error', 'Template Error.', err);
     });
