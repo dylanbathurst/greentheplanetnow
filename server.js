@@ -1,7 +1,11 @@
 var http      = require('http'),
     mu        = require('mu2'),
-    app       = require('express').createServer(),
+    express   = require('express'),
     util      = require('util');
+
+var app = express.createServer();
+
+app.use(express.static(__dirname + '/public'));
 
 var template = function (res, statusCode, template, view) {
 
@@ -28,6 +32,10 @@ var template = function (res, statusCode, template, view) {
 
 app.get('/', function (req, res) {
   template(res, 200, 'layout', {});  
+});
+
+app.get('/flower-power', function (req, res) {
+  template(res, 200, 'home', {});  
 });
 
 app.listen(80);
