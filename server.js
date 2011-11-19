@@ -27,8 +27,8 @@ var template = function (res, statusCode, template, view) {
 };
 
 app.get('/', function (req, res) {
-  template(res, 200, 'layout', {'hello': 'world'});  
+  template(res, 200, 'layout', {});  
 });
 
-app.listen(80);
+app.listen(8000);
 
