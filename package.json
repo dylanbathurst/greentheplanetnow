@@ -1,0 +1,17 @@
+{
+  "name": "GreenThePlanetNow",
+  "version": "0.1.0",
+  "description": "Helping to green our world",
+  "keywords": [""],
+  "author": "DylanBathurst<dylanbathurst@gmail.com>",
+  "contributors": [
+    { "name": "Dylan Bathurst", "email": "dylanbathurst@gmail.com" }
+  ],
+  "dependencies": {
+    "mu2": "0.5.x",
+    "express": "x.x.x"
+  },
+  "main": "index",
+  "engines": { "node": "0.4.x" }
+}
+
