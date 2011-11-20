@@ -48,18 +48,35 @@ function plotItem(item, map) {
   var resi = item,
       lat = resi.ProjectLatitude,
       lon = resi.ProjectLongitude,
-      latlng = new google.maps.LatLng(lat, lon);
+      latlng = new google.maps.LatLng(lat, lon),
+      x;
 
-  // var markerimage = new google.maps.MarkerImage();
-  // markerimage.size = new google.maps.Size(80, 80);
-  // markerimage.scaledSize = new google.maps.Size(80, 80);
-  // markerimage.url = '';
+  for (x in item._attachments) {
+    item.imageName = x;
+  }
+
+  var markerimage = new google.maps.MarkerImage();
+  markerimage.size = new google.maps.Size(50, 50);
+  markerimage.scaledSize = new google.maps.Size(50, 50);
+  markerimage.url = 'http://dylan.couchone.com:5984/greentheplanet/' + item._id + '/' + item.imageName;
 
   var marker = new google.maps.Marker({
-        position:   latlng,
-        map:        map
-      });
+    position:   latlng,
+    map:        map
+  });
 
-  // marker.setIcon(markerimage);
+  marker.setIcon(markerimage);
+  google.maps.event.addListener(marker, 'click', function() {
+      
+    var contentString = '<div>Hello world!</div>';
+
+    var infoWindow = new google.maps.InfoWindow({
+      content: contentString    
+    });
+
+    infoWindow.open(map, marker);
+    
+  });
 
 }
+
