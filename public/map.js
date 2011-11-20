@@ -21,7 +21,7 @@ function initialize() {
 
 function getItems(map) {
   $.ajax({
-    url: '/items.json',    
+    url: '/projects.json',    
     success: function (res) {
 
       console.log(res);
@@ -68,7 +68,8 @@ function plotItem(item, map) {
   marker.setIcon(markerimage);
   google.maps.event.addListener(marker, 'click', function() {
       
-    var contentString = '<div><h1>' + item.ProjectName + '</h1>' +
+    var contentString = '<div><h1><a href="/projects/' + item._id +
+                        '">' + item.ProjectName + '</a></h1>' +
                         '<span>' + item.ProjectCategory + '</span>' +
                         '<span>' + item.OwnerName + '</span>' +
                         '<span>' + item.Description + '</span>' +

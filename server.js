@@ -38,34 +38,51 @@ app.get('/flower-power', function (req, res) {
   template(res, 200, 'home', {});  
 });
 
-app.get('/items.json', function (req, res) {
+app.get('/projects.json', function (req, res) {
 
-  var buffer = '';
-  res.writeHead(200, {
-    'Content-Type': 'application-json'
-  });
+  requester(req, res, '/greentheplanet/_design/items/_view/allitems');
 
+});
+
+app.get('/projects/:id.:format', function (req, res) {
+  var id     = req.params.id;
+
+  requester(req, res, '/greentheplanet/' + id, 'project');
+
+});
+
+app.listen(80);
+
+var requester = function(req, res, url, file) {
+
+  var fileName = file || null;
   var options = {
     host:   'dylan.couchone.com',
     port:   5984,
-    path:   '/greentheplanet/_design/items/_view/allitems'
-    // path:   '/greentheplanet/021004ab9e404a9a61d73c112f000b6d'
+    path:   url
   };
 
   http.get(options, function (response) {
+    var buffer = '';
     response.on('data', function (chunk) {
       buffer += chunk;
     })
     .on('end', function () {
-      res.write(buffer);
-      res.end();
+      if (fileName) {
+        // html page
+        template(res, 200, fileName, buffer);
+      } else {
+        // json 
+        res.writeHead(200, {
+          'Content-Type': 'application-json'
+        });
+        res.write(buffer);
+        res.end();
+      }
+
     });
   })
   .on('error', function (e) {
     console.log('[ERROOOOAAAAAARRRRRR]');
   });
-
-});
-
-app.listen(8000);
-
+};
