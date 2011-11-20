@@ -4,3 +4,22 @@
 #mapCanvas {position:absolute; top:50px; right:0; left:350px; bottom:0; background:#666;}
 #sidebar {position:absolute; top:50px; left:0; bottom:0; width:350px; overflow:auto; background:#999;}
 #sidebar li {margin:0 0 5px; background:#fff;}
+#nav{display: -webkit-box; -webkit-box-orient:horizontal; border:2px solid #ff6600; -webkit-border-radius:6px;}
+
+nav a{
+    font-family:sans-serif;
+    display:block;
+    color:black;
+    padding:10px;
+     -webkit-box-flex:1;
+    text-align:center;
+    -webkit-transition:all .4s linear;
+}
+
+nav a:hover{
+    color:red;
+}
+
+p{
+    margin-top:20px;
+}
