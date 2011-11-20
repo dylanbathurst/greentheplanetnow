@@ -68,7 +68,19 @@ function plotItem(item, map) {
   marker.setIcon(markerimage);
   google.maps.event.addListener(marker, 'click', function() {
       
-    var contentString = '<div>Hello world!</div>';
+    var contentString = '<div><h1>' + item.ProjectName + '</h1>' +
+                        '<span>' + item.ProjectCategory + '</span>' +
+                        '<span>' + item.OwnerName + '</span>' +
+                        '<span>' + item.Description + '</span>' +
+                        '<span>' + item.FundingReceived + '</span>' +
+                        '<span>' + item.FundingNeeded + '</span>';
+
+    if (item.ProjectVideo) {
+      console.log(item.ProjectVideo.videoId);
+      contentString += '<iframe src="http://player.vimeo.com/video/' + item.ProjectVideo.videoId + '?title=0&amp;byline=0&amp;portrait=0" width="400" height="300" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe></div>'
+    } else {
+      contentString += '</div>';
+    }
 
     var infoWindow = new google.maps.InfoWindow({
       content: contentString    
