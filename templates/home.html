@@ -24,36 +24,13 @@
 </div>
 
 <div id="sidebar">
-
+ <ul id="itemList"></ul> 
 </div>
 
 
 
 <script type="text/javascript" src="/jquery-1.7.min.js"></script>
-<script type="text/javascript">
-
-  $(document).ready(function () {
-    initialize();    
-  });
-
-
-  function initialize() {
-    var canvas = document.getElementById("mapCanvas"),
-        latlng = new google.maps.LatLng(37.3,-0.6);
-
-    var myOptions = {
-      zoom: 2,
-      center: latlng,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-    };
-
-    var map = new google.maps.Map(canvas, myOptions);
-
-    // getItems(map);
-
-  }
-
-</script>
+<script type="text/javascript" src="/map.js"></script>
 
 <script type="text/javascript">
 
