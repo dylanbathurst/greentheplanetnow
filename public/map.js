@@ -70,11 +70,11 @@ function plotItem(item, map) {
       
     var contentString = '<div><h1><a href="/projects/' + item._id +
                         '">' + item.ProjectName + '</a></h1>' +
-                        '<span>' + item.ProjectCategory + '</span>' +
-                        '<span>' + item.OwnerName + '</span>' +
-                        '<span>' + item.Description + '</span>' +
-                        '<span>' + item.FundingReceived + '</span>' +
-                        '<span>' + item.FundingNeeded + '</span>';
+                        '<span>' + item.ProjectCategory + '<&nbsp></span>' +
+                        '<span>' + item.OwnerName + '<&nbsp></span>' +
+                        '<span>' + item.Description + '<&nbsp></span>' +
+                        '<span>' + item.FundingReceived + '<&nbsp></span>' +
+                        '<span>' + item.FundingNeeded + '<&nbsp></span>';
 
     if (item.ProjectVideo) {
       console.log(item.ProjectVideo.videoId);
