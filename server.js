@@ -10,10 +10,31 @@ app.use(express.bodyParser());
 
 var whichFlower = function(view) {
 
-  var needed = parseInt(view.FundingNeeded.replace('$',''));
-  var received = parseInt(view.FundingReceived.replace('$',''));
-  console.log(needed+received);
-  // (100-(view.FundingNeeded/view.FundingReceived*100));
+  var needed = parseFloat(view.FundingNeeded.replace('$','').replace(',',''));
+  var received = parseInt(view.FundingReceived.replace('$','').replace(',',''));
+
+  var percentage = (100-(needed/received*100))
+      flower     = '';
+
+  switch (true) {
+    case (percentage < 5):
+      flower = 'flower0.png';
+    break;
+    case (percentage < 25):
+      flower = 'flower25.png';
+    break;
+    case (percentage < 50):
+      flower = 'flower50.png';
+    break;
+    case (percentage < 75):
+      flower = 'flower75.png';
+    break;
+    default:
+      flower = 'flower100.png';
+    break;
+  }
+
+  return flower;
   
 }
 
@@ -85,6 +106,7 @@ var requester = function(req, res, url, file) {
         if (view.ProjectVideo) {
           view.videoId = view.ProjectVideo.videoId;
         }
+        view.flower = flower;
         template(res, 200, fileName, view);
       } else {
         // json 
