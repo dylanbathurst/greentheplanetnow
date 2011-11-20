@@ -44,14 +44,12 @@ app.get('/projects.json', function (req, res) {
 
 });
 
-app.get('/projects/:id.:format', function (req, res) {
-  var id     = req.params.id;
+app.get('/projects/:id.:format?', function (req, res) {
+  var id = req.params.id;
 
   requester(req, res, '/greentheplanet/' + id, 'project');
 
 });
-
-app.listen(80);
 
 var requester = function(req, res, url, file) {
 
@@ -68,9 +66,11 @@ var requester = function(req, res, url, file) {
       buffer += chunk;
     })
     .on('end', function () {
-      if (fileName) {
+      if (fileName && (req.params.format === 'html' || req.params.format == undefined)) {
         // html page
-        template(res, 200, fileName, buffer);
+        view = JSON.parse(buffer);
+        view.videoId = view.ProjectVideo.videoId;
+        template(res, 200, fileName, view);
       } else {
         // json 
         res.writeHead(200, {
@@ -86,3 +86,6 @@ var requester = function(req, res, url, file) {
     console.log('[ERROOOOAAAAAARRRRRR]');
   });
 };
+
+app.listen(80);
+
