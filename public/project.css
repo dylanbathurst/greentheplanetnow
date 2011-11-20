@@ -1,0 +1,7 @@
+#project {width:960px; margin:0 auto; margin-top:70px;}
+#project #callout {float:left; width:500px;}
+#project #sidebar {float:right; width:330px; padding:10px; background:#ccc;}
+         #sidebar .title {display:block; font-size:20px;}
+         #sidebar .money {display:block; font-size:40px; font-weight:bold;}
+
+#donate {display:block; width:350px; padding:5px 0 5px 10px; font-size:50px; color:#fff; background:#8fb5c1; text-decoration:none;}

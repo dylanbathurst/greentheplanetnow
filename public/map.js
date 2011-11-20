@@ -29,16 +29,32 @@ function getItems(map) {
       var items = res.rows,
           len   = items.length,
           buffer = [],
-          i;
+          i,
+          itemIds = [];
 
       for (var i = 0; i < len; i++) {
         var item = items[i].value;
         
-        buffer.push('<li><h2>', item.ProjectName, '</h2><h3>', item.OwnerName, '</h3></li>');
+        buffer.push('<li id="', item._id, '"><h2>', item.ProjectName, '</h2><h3>', item.OwnerName, '</h3></li>');
         plotItem(item, map);
+        itemIds.push(item._id);
+        
       }
 
       $('#itemList').html(buffer.join(''));
+
+
+            console.log(window.location.origin);
+      itemIds.forEach(function(i, id) {
+        google.maps.event.addDomListener(document.getElementById(i), 'click', function(e) {
+          var target = $(e.target);
+          if (e.target.tagName == 'LI') {
+            window.location = window.location.origin + '/projects/' + target.attr('id');
+          } else if (e.target.tagName == 'H2' || e.target.tagName == 'H3') {
+            window.location = window.location.origin + '/projects/' + target.parent().attr('id');
+          }
+        });
+      });
 
     }
   });
@@ -66,15 +82,16 @@ function plotItem(item, map) {
   });
 
   marker.setIcon(markerimage);
+
   google.maps.event.addListener(marker, 'click', function() {
       
-    var contentString = '<div><h1><a target="_blank" href="/projects/' + item._id +
+    var contentString = '<div class="popupWindow"><h1><a target="_blank" href="/projects/' + item._id +
                         '">' + item.ProjectName + '</a></h1>' +
-                        '<span>Category: ' + item.ProjectCategory + '&nbsp;</span><br>' +
-                        '<span>Owner: ' + item.OwnerName + '&nbsp;</span><br>' +
-                        '<span>Description: ' + item.Description + '&nbsp;</span><br>' +
-                        '<span>Funding Received: ' + item.FundingReceived + ' of &nbsp;</span><br>' +
-                        '<span>Funding Needed: ' + item.FundingNeeded + '</span>';
+                        '<a class="readMore" target="_blank" href="/projects/' + item._id + '">How Can I Help?!</a>' +
+                        '<span class="owner">by ' + item.OwnerName + '</span>' +
+                        'Tags: <span class="tag">' + item.ProjectCategory + '</span>' +
+                        '<span class="fundingRec">Funding Gathered: <span class="money">' + item.FundingReceived + '</span></span>' +
+                        '<span class="fundingNeed">We still need: <span class="money">' + item.FundingNeeded + '</span></span>';
 
     if (item.ProjectVideo) {
       console.log(item.ProjectVideo.videoId);

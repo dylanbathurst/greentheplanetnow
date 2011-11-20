@@ -4,36 +4,46 @@
 
   <title>Green the Planet</title>
 
-  <link href="/map.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href="/style.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href="/project.css" media="screen" rel="stylesheet" type="text/css" />
   <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
 
 </head>
 <body>
 
 
+<div id="header">
+<nav id="nav">
+  <img src="/navbarlogo.png" alt="Green the Planet Now!" />
+	  <a href="#">Community</a>
+	  <a href="">Conservation</a>
+	  <a href="">Inventions</a>
+	  <a href="">Media</a>
+	  <a href="">Create</a>
+	</nav>
+</div>
 
-<h1>{{ProjectName}} <span>by {{OwnerName}}</span></h1>
-<span>Amount Needed {{FundingNeeded}}</span>
-<span>Amount Raised {{FundingReceived}}</span>
+<div id="project">
 
-<iframe src="http://player.vimeo.com/video/{{videoId}}?title=0&amp;byline=0&amp;portrait=0" width="400" height="300" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+  <div id="callout">
+    <iframe src="http://player.vimeo.com/video/{{videoId}}?title=0&amp;byline=0&amp;portrait=0" width="600" height="400" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
 
-{{AddedTimestamp}}
-<br />{{DateCampaignEnds}}
-<br />{{DateCampaignStarts}}
-<br />{{Description}}
-<br />{{FundingNeeded}}
-<br />{{FundingReceived}}
-<br />{{OwnerEmail}}
-<br />{{OwnerName}}
-<br />{{OwnerPhoto}}
-<br />{{Project Category}}
-<br />{{ProjectImage}}
-<br />{{ProjectLatitude}}
-<br />{{ProjectLongitude}}
-<br />{{ProjectName}}
-<br />{{ProjectSite}}
-<br />{{ProjectVideo}}
+    <h1>{{ProjectName}} <span>by {{OwnerName}}</span></h1>
+    <div class="description">
+      {{Description}}
+    </div>
+  </div>
+
+  <div id="sidebar">
+    <span class="title">Total Funding Received to Date</span>
+    <span class="money">{{FundingReceived}}</span>
+    <span class="title">Remaining Goal to be Funded</span>
+    <span class="money">{{FundingNeeded}}</span>
+
+    <img src="/flower75.png" />
+    <a id="donate" href="">Donate Now</a>
+  </div>
+</div>
 
 <script type="text/javascript" src="/jquery-1.7.min.js"></script>
 <script type="text/javascript">

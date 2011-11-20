@@ -8,6 +8,15 @@ var app = express.createServer();
 app.use(express.static(__dirname + '/public'));
 app.use(express.bodyParser());
 
+var whichFlower = function(view) {
+
+  var needed = parseInt(view.FundingNeeded.replace('$',''));
+  var received = parseInt(view.FundingReceived.replace('$',''));
+  console.log(needed+received);
+  // (100-(view.FundingNeeded/view.FundingReceived*100));
+  
+}
+
 var template = function (res, statusCode, template, view) {
 
   mu.root = __dirname + '/templates/';
@@ -69,7 +78,10 @@ var requester = function(req, res, url, file) {
     .on('end', function () {
       if (fileName && (req.params.format === 'html' || req.params.format == undefined)) {
         // html page
-        view = JSON.parse(buffer);
+        var view = JSON.parse(buffer);
+
+        var flower = whichFlower(view);
+
         if (view.ProjectVideo) {
           view.videoId = view.ProjectVideo.videoId;
         }
