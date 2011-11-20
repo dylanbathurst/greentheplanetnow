@@ -56,7 +56,6 @@ function plotItem(item, map) {
   }
 
   var markerimage = new google.maps.MarkerImage();
-  markerImage.origin = new google.maps.Point(2, 2);
   markerimage.size = new google.maps.Size(48, 48);
   markerimage.scaledSize = new google.maps.Size(44, 44);
   markerimage.url = 'http://dylan.couchone.com:5984/greentheplanet/' + item._id + '/' + item.imageName;
