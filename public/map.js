@@ -73,7 +73,7 @@ function plotItem(item, map) {
                         '<span>' + item.ProjectCategory + '&nbsp;</span>' +
                         '<span>' + item.OwnerName + '&nbsp;</span>' +
                         '<span>' + item.Description + '&nbsp;</span>' +
-                        '<span>' + item.FundingReceived + '&nbsp;</span>' +
+                        '<span>' + item.FundingReceived + ' of &nbsp;</span>' +
                         '<span>' + item.FundingNeeded + '&nbsp;</span>';
 
     if (item.ProjectVideo) {
