@@ -68,7 +68,7 @@ function plotItem(item, map) {
   marker.setIcon(markerimage);
   google.maps.event.addListener(marker, 'click', function() {
       
-    var contentString = '<div><h1><a href="/projects/' + item._id +
+    var contentString = '<div><h1><a target="_blank" href="/projects/' + item._id +
                         '">' + item.ProjectName + '</a></h1>' +
                         '<span>' + item.ProjectCategory + '</span>' +
                         '<span>' + item.OwnerName + '</span>' +

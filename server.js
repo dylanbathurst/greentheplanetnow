@@ -87,5 +87,9 @@ var requester = function(req, res, url, file) {
   });
 };
 
-app.listen(80);
+app.get('/new-project', function(req, res) {
+  template(res, 200, 'newProject', {});  
+});
+
+app.listen(8000);
 
