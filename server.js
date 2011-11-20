@@ -129,6 +129,13 @@ app.get('/new-project', function(req, res) {
   template(res, 200, 'newProject', {});  
 });
 
+app.get('/savetheturtles', function(req, res) {
+  res.writeHead(301, {
+    "Location": "/projects/0f1ddccef0f9b00315e1606c840024be"
+  });
+  res.end();
+});
+
 app.post('/new-project-submit', function(req, res) {
   res.send(req.body); 
 
