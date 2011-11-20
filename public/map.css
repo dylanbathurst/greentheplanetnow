@@ -6,20 +6,20 @@ body {font-family:"Helvetica", Verdana, sans-serif;}
 #sidebar li {height:50px; padding:5px; background:-webkit-gradient(linear, 100% 0%, 0% 100%, from(#A1A1A1), to(#E6E6E6)); border-top:1px solid #fff; border-bottom:1px solid #999;}
 #sidebar h2 {font-size:18px; color:#333; text-shadow:1px 1px 0px #fff;}
 #sidebar h3 {font-size:10px; color:#999;}
-#nav{display: -webkit-box; -webkit-box-orient:horizontal; border:2px solid #ff6600; -webkit-border-radius:6px;}
+#nav{display: -webkit-box; -webkit-box-orient:horizontal; -webkit-border-radius:6px;}
 
 nav a{
     font-family:sans-serif;
     display:block;
-    color:black;
-    padding:10px;
-     -webkit-box-flex:1;
+    color:#fff;
+    padding:15px;
     text-align:center;
     -webkit-transition:all .4s linear;
+    text-decoration:none;
 }
 
 nav a:hover{
-    color:red;
+    color:green;
 }
 
 p{
