@@ -6,6 +6,7 @@ var http      = require('http'),
 var app = express.createServer();
 
 app.use(express.static(__dirname + '/public'));
+app.use(express.bodyParser());
 
 var template = function (res, statusCode, template, view) {
 
@@ -69,7 +70,9 @@ var requester = function(req, res, url, file) {
       if (fileName && (req.params.format === 'html' || req.params.format == undefined)) {
         // html page
         view = JSON.parse(buffer);
-        view.videoId = view.ProjectVideo.videoId;
+        if (view.ProjectVideo) {
+          view.videoId = view.ProjectVideo.videoId;
+        }
         template(res, 200, fileName, view);
       } else {
         // json 
@@ -83,6 +86,7 @@ var requester = function(req, res, url, file) {
     });
   })
   .on('error', function (e) {
+    //this is scary
     console.log('[ERROOOOAAAAAARRRRRR]');
   });
 };
@@ -92,8 +96,21 @@ app.get('/new-project', function(req, res) {
 });
 
 app.post('/new-project-submit', function(req, res) {
+  res.send(req.body); 
+
+  var options = {
+    host:   'dylan.couchone.com',
+    port:   5984,
+    path:   '/greentheplanet',
+    method: 'POST',
+    data:   req.body
+  };
+
+  var request = http.request(options, function(res) {
+    console.log(res);
+  });
 
 });
 
-app.listen(80);
+app.listen(8000);
 

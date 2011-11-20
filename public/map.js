@@ -34,7 +34,7 @@ function getItems(map) {
       for (var i = 0; i < len; i++) {
         var item = items[i].value;
         
-        buffer.push('<li>', item.OwnerName, '</li>');
+        buffer.push('<li><h2>', item.ProjectName, '</h2><h3>', item.OwnerName, '</h3></li>');
         plotItem(item, map);
       }
 
