@@ -91,5 +91,9 @@ app.get('/new-project', function(req, res) {
   template(res, 200, 'newProject', {});  
 });
 
-app.listen(8000);
+app.post('/new-project-submit', function(req, res) {
+
+});
+
+app.listen(80);
 
